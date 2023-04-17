@@ -18,7 +18,6 @@ RSpec.describe FoodsController, type: :routing do
       expect(get: '/foods/1/edit').to route_to('foods#edit', id: '1')
     end
 
-
     it 'routes to #create' do
       expect(post: '/foods').to route_to('foods#create')
     end
