@@ -16,3 +16,48 @@ a {
 .home {
   color: white;
 }
+
+.food {
+  width: 80%;
+  margin: auto;
+}
+
+.new_food {
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  margin-bottom: 40px;
+}
+
+.new_food a {
+  color: #fff;
+  background-color: #007bff;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table,
+td,
+th {
+  border: 1px solid;
+  padding-left: 8px;
+}
+
+.food_table {
+  width: 80%;
+  margin: auto;
+}
+
+.food_table tr {
+  height: 60px;
+}
+
+.notice,
+.alert {
+  text-align: center;
+}
