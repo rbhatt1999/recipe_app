@@ -6,6 +6,7 @@
     <p>Description:<%= @recipe.description %> </p> 
   </div>
   <div>
+   <% if can? :update, @recipe%>
     <% if @recipe.public %>
       <p>Current Status: Public</p>
       <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
@@ -13,12 +14,15 @@
       <p>Current Status: Private</p>
       <%= button_to "Change public to public", recipe_path(@recipe), method: :patch%>
     <% end %>
+   <% end %>
   </div>
 </div>
 
 
 <div class="d-flex justify-content-between text-decoration-none mb-5">
-  <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-secondary' %>
+  <% if can? :update, @recipe%>
+    <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-secondary' %>
+  <%end%>
 </div>
 
 
@@ -38,8 +42,12 @@
           <td><%= ingredient.quantity%> <%= ingredient.food.measurement_unit %></td>
           <td>$ <%= ingredient.food.price %></td>
           <td class="d-flex gap-2">
+          <% if can? :update, @recipe%>
             <%= link_to "Modify", edit_recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id) %>
             <%= button_to "Remove", recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id), method: :delete %>
+          <%else%>
+            <p>Actions Not allowed</p>
+          <%end%>
           </td>
       </tr>
     <% end %>
