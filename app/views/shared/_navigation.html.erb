@@ -1,8 +1,19 @@
 <nav class="sticky-top navbar-dark bg-dark">
   <ul class="nav-list d-flex align-items-center justify-content-between mb-0">
     <li class="navbar-brand">
-      <%= link_to "Recipe App" , root_path, class: "home" %>
+      Recipe App
     </li>
+    <% if user_signed_in?%>
+      <div class="d-flex align-items-center justify-content-between">
+        <li class="navbar-brand">
+          <%= link_to "Foods", foods_path, class: "link-success foods"%>
+        </li>
+        <li class="navbar-brand">
+          <%= link_to "Recipes" , recipes_path, class: "link-success recipes" %>
+        </li>
+      </div>
+    <%end%>
+    
     <div class="d-flex align-items-center justify-content-between">
       <% if user_signed_in? %>
         <li class="navbar-brand fs-6"> Welcome <span style="">
