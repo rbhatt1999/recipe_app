@@ -14,22 +14,20 @@
     </div>
 
     <% @recipes.each do |recipe| %>
-      <div class="container-fluid mb-4">
+      <div class="container-fluid mb-4 border border-">
+      <%= link_to recipe_path(recipe.id), class: 'text-decoration-none' do%>
         <div class="row border border-1 align-items-center">
             <div class="col-sm-3 p-3">
               <h4><%= recipe.name %></h4>
-              <div>
-
-                <div >
-                <%= link_to "Recipe Details", recipe_path(recipe.id), class: 'text-decoration-none' %>
-                    <%= button_to "Remove", recipe_path(recipe.id), class: 'btn btn-danger mt-2', method: :delete %>
-                </div>
-              </div>
           </div>
           <div class="col col-sm-9 overflow-hidden">
             <p class="card-text"><%= recipe.description %></p>
           </div>
         </div>
+        <%end%>
+         <div class="mb-2 " >
+                    <%= button_to "Remove", recipe_path(recipe.id), class: 'btn btn-danger mt-2', method: :delete %>
+         </div>
       </div>
     <% end %>
 
