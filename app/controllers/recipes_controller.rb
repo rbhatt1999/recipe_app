@@ -7,7 +7,10 @@ class RecipesController < ApplicationController
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.recipe_food.where(recipe: @recipe)
+  end
 
   # GET /recipes/new
   def new
@@ -30,8 +33,15 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
+    @recipe.recipe_food.destroy_all
     @recipe.destroy
     redirect_to recipes_url, notice: 'Recipe was successfully destroyed.'
+  end
+
+  def update
+    @recipe.public = !@recipe.public
+    @recipe.save
+    redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.'
   end
 
   private
