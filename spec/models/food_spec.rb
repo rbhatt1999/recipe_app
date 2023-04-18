@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Food, type: :model do
   subject do
     @user = User.new(name: 'Hassan', email: 'hassan@gmail.com')
-    @food = @user.foods.new(name: 'Appel', measurement_unit: 'kg',price: 10 , quantity: 12)
+    @food = @user.foods.new(name: 'Appel', measurement_unit: 'kg', price: 10, quantity: 12)
   end
 
   describe 'Food model' do
