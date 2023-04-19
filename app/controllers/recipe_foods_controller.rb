@@ -2,14 +2,6 @@ class RecipeFoodsController < ApplicationController
   before_action :set_recipe_food, only: %i[show edit update destroy]
   load_and_authorize_resource
 
-  # GET /recipe_foods or /recipe_foods.json
-  def index
-    @recipe_foods = RecipeFood.all
-  end
-
-  # GET /recipe_foods/1 or /recipe_foods/1.json
-  def show; end
-
   # GET /recipe_foods/new
   def new
     @recipe_food = RecipeFood.new

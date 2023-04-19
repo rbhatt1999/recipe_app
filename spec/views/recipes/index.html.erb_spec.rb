@@ -1,35 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe 'recipes/index', type: :view do
-  before(:each) do
-    assign(:recipes, [
-             Recipe.create!(
-               name: 'Name',
-               preperation_time: 'Preperation Time',
-               cooking_time: 'Cooking Time',
-               description: 'MyText',
-               public: false,
-               user: nil
-             ),
-             Recipe.create!(
-               name: 'Name',
-               preperation_time: 'Preperation Time',
-               cooking_time: 'Cooking Time',
-               description: 'MyText',
-               public: false,
-               user: nil
-             )
-           ])
+  include Devise::Test::IntegrationHelpers
+  before(:example) do
+    @user = User.create(name: 'Kolly', email: 'asdasasd@gmail.com', password: 'password', confirmed_at: Time.now)
+    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour',
+                            preperation_time: '1 hour', user: @user)
+    sign_in @user
+    visit recipes_path
+  end
+  it 'renders a list of recipes' do
+    expect(page).to have_content 'Recipe'
   end
 
-  it 'renders a list of recipes' do
-    render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new('Name'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Preperation Time'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('Cooking Time'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new('MyText'.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
+  it 'click on new recipe' do
+    click_on 'Add new recipe'
+    expect(current_path).to eql new_recipe_path
+  end
+
+  it 'click on delete recipe' do
+    click_on 'Remove'
+    expect(@user.recipes.count).to eql(0)
+  end
+  it 'click on recipe' do
+    find("a[href='/recipes/#{@recipe.id}']").click
+    sleep 1
+    expect(current_path).to eql recipe_path(@recipe)
   end
 end

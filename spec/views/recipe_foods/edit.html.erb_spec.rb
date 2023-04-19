@@ -1,27 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe 'recipe_foods/edit', type: :view do
-  let(:recipe_food) do
-    RecipeFood.create!(
-      quantity: 1,
-      recipe: nil,
-      food: nil
-    )
+RSpec.describe 'recipes_food/edit', type: :view do
+  include Devise::Test::IntegrationHelpers
+  before(:example) do
+    @user = User.create(name: 'Kolly', email: 'asdasasd@gmail.com', password: 'password', confirmed_at: Time.now)
+    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour',
+                            preperation_time: '1 hour', public: false, user: @user)
+    @food = Food.create(name: 'apple', measurement_unit: 'kg', price: 1.5, quantity: 45, user: @user)
+    @recipe_food = RecipeFood.create(recipe: @recipe, food: @food, quantity: 1)
+    sign_in @user
+    visit edit_recipe_recipe_food_path(@recipe, @recipe_food)
   end
 
-  before(:each) do
-    assign(:recipe_food, recipe_food)
+  it 'renders new recipe food form' do
+    expect(page).to have_content 'Edit Ingredient'
   end
 
-  it 'renders the edit recipe_food form' do
-    render
+  it 'has a select field for food' do
+    expect(page).to have_select('recipe_food[food_id]')
+  end
+  it 'has a quantity field' do
+    expect(page).to have_field('recipe_food[quantity]')
+  end
 
-    assert_select 'form[action=?][method=?]', recipe_food_path(recipe_food), 'post' do
-      assert_select 'input[name=?]', 'recipe_food[quantity]'
-
-      assert_select 'input[name=?]', 'recipe_food[recipe_id]'
-
-      assert_select 'input[name=?]', 'recipe_food[food_id]'
-    end
+  it 'has a select field for food' do
+    fill_in 'recipe_food[quantity]', with: 2
+    find('#recipe_food_food_id').find(:xpath, 'option[1]').select_option
+    click_on 'Add Ingredient'
   end
 end

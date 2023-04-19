@@ -9,10 +9,10 @@
    <% if can? :update, @recipe%>
     <% if @recipe.public %>
       <p>Current Status: Public</p>
-      <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
+      <%= button_to "Change public to private", recipe_path(@recipe), method: :patch, class: "submit-button"%>
     <% else %>
       <p>Current Status: Private</p>
-      <%= button_to "Change public to public", recipe_path(@recipe), method: :patch%>
+      <%= button_to "Change Private to public", recipe_path(@recipe), method: :patch, class: "submit-button" %>
     <% end %>
    <% end %>
   </div>
