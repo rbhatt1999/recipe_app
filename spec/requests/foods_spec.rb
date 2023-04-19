@@ -4,7 +4,7 @@ RSpec.describe 'Foods', type: :request do
   include Devise::Test::IntegrationHelpers
 
   let(:user) { User.create(name: 'Kolly', email: 'kolly@mail.com', password: 'password', confirmed_at: Time.now) }
-  let(:food) { user.foods.create(name: 'apple', measurement_unit: 'kg', price: 4) }
+  let(:food) { user.foods.create(name: 'apple',quantity:2, measurement_unit: 'kg', price: 4) }
 
   describe 'GET /index' do
     before do
@@ -21,7 +21,7 @@ RSpec.describe 'Foods', type: :request do
     end
 
     it 'render contain foods' do
-      @food1 = user.foods.create(name: 'apple', measurement_unit: 'kg', price: 4)
+      @food1 = user.foods.create(name: 'apple',quantity:2, measurement_unit: 'kg', price: 4)
       get foods_url
       expect(response.body).to include(@food1.name)
     end
@@ -57,12 +57,12 @@ RSpec.describe 'Foods', type: :request do
 
     it 'should create a new food' do
       expect do
-        post foods_path, params: { food: { name: 'apple', measurement_unit: 'kg', price: 4 } }
+        post foods_path, params: { food: { name: 'apple', quantity:2, measurement_unit: 'kg', price: 4 } }
       end.to change(Food, :count).by(1)
     end
 
     it 'should redirect to foods_path' do
-      post foods_path, params: { food: { name: 'apple', measurement_unit: 'kg', price: 4 } }
+      post foods_path, params: { food: { name: 'apple',quantity:2, measurement_unit: 'kg', price: 4 } }
       expect(response).to redirect_to foods_path
     end
 
