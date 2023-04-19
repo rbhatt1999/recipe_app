@@ -16,6 +16,5 @@ RSpec.describe FoodsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/foods/1').to route_to('foods#destroy', id: '1')
     end
-
   end
 end

@@ -19,7 +19,7 @@ RSpec.describe 'Foods', type: :request do
     it 'response to html' do
       expect(response.content_type).to include 'text/html'
     end
-    
+
     it 'render contain foods' do
       @food1 = user.foods.create(name: 'apple', measurement_unit: 'kg', price: 4)
       get foods_url
@@ -54,7 +54,7 @@ RSpec.describe 'Foods', type: :request do
       sign_in user
       get new_food_path
     end
-    
+
     it 'should create a new food' do
       expect do
         post foods_path, params: { food: { name: 'apple', measurement_unit: 'kg', price: 4 } }
