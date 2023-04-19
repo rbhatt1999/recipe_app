@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe RecipesController, type: :model do
   before(:example) do
     @user = User.create(name: 'Kolly', email: 'asdasasd@gmail.com', password: 'password', confirmed_at: Time.now)
-    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour', preperation_time: '1 hour', user: @user)
-    @food = Food.create(name: 'apple', measurement_unit: 'kg', price: 1.5, quantity:45, user: @user)
+    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour',
+                            preperation_time: '1 hour', user: @user)
+    @food = Food.create(name: 'apple', measurement_unit: 'kg', price: 1.5, quantity: 45, user: @user)
     @recipe_food = RecipeFood.create(recipe: @recipe, food: @food, quantity: 1)
   end
   describe 'validations' do

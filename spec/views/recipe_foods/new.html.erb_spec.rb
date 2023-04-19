@@ -4,8 +4,9 @@ RSpec.describe 'recipes_food/new', type: :view do
   include Devise::Test::IntegrationHelpers
   before(:example) do
     @user = User.create(name: 'Kolly', email: 'asdasasd@gmail.com', password: 'password', confirmed_at: Time.now)
-    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour', preperation_time: '1 hour', public: false, user: @user)
-    @food = Food.create(name: 'apple', measurement_unit: 'kg', price: 1.5, quantity:45, user: @user)
+    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour',
+                            preperation_time: '1 hour', public: false, user: @user)
+    @food = Food.create(name: 'apple', measurement_unit: 'kg', price: 1.5, quantity: 45, user: @user)
     @recipe_food = RecipeFood.create(recipe: @recipe, food: @food, quantity: 1)
     sign_in @user
     visit new_recipe_recipe_food_path(@recipe)

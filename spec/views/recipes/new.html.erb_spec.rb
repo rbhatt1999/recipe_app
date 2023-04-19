@@ -4,7 +4,8 @@ RSpec.describe 'recipes/new', type: :view do
   include Devise::Test::IntegrationHelpers
   before(:example) do
     @user = User.create(name: 'Kolly', email: 'asdasasd@gmail.com', password: 'password', confirmed_at: Time.now)
-    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour', preperation_time: '1 hour', public: false, user: @user)
+    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour',
+                            preperation_time: '1 hour', public: false, user: @user)
     sign_in @user
     visit new_recipe_path
   end

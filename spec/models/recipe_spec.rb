@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe RecipesController, type: :model do
   before(:example) do
     @user = User.create(name: 'Kolly', email: 'asdasasd@gmail.com', password: 'password', confirmed_at: Time.now)
-    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour', preperation_time: '1 hour', user: @user)
+    @recipe = Recipe.create(name: 'Recipe', description: 'Description', cooking_time: '1 hour',
+                            preperation_time: '1 hour', user: @user)
   end
   describe 'validations' do
     it 'is valid with valid attributes' do
