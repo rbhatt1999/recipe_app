@@ -1,29 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe 'foods/new', type: :view do
-  before(:each) do
-    assign(:food, Food.new(
-                    name: 'MyString',
-                    measurement_unit: 'MyString',
-                    price: 1,
-                    quantity: 1,
-                    user: nil
-                  ))
-  end
+  describe 'after logging in' do
+    before :each do
+      @user1 = User.create!(name: 'Hassan', email: 'hassan@example.com', password: '123456', confirmed_at: Time.now)
+      @food1 = Food.create!(name: 'Appel', measurement_unit: 'kg', quantity: 5, price: 4, user_id: @user1.id)
 
-  it 'renders new food form' do
-    render
+      visit user_session_path
+      fill_in 'Email', with: 'hassan@example.com'
+      fill_in 'Password', with: '123456'
+      click_on 'Log in'
+      visit new_food_path
+    end
 
-    assert_select 'form[action=?][method=?]', foods_path, 'post' do
-      assert_select 'input[name=?]', 'food[name]'
+    it 'should display a form with a name field' do
+      expect(page).to have_field('Name')
+    end
 
-      assert_select 'input[name=?]', 'food[measurement_unit]'
+    it 'should display a form with a Measurement unit field' do
+      expect(page).to have_field('Measurement unit')
+    end
 
-      assert_select 'input[name=?]', 'food[price]'
+    it 'should display a form with a price field' do
+      expect(page).to have_field('Price')
+    end
 
-      assert_select 'input[name=?]', 'food[quantity]'
+    it 'should display a form with a Quantity field' do
+      expect(page).to have_field('Quantity')
+    end
 
-      assert_select 'input[name=?]', 'food[user_id]'
+    it 'should display a form with a submit button' do
+      expect(page).to have_button('Create Food')
+    end
+
+    it 'displays create food form and create a food' do
+      fill_in 'Name', with: 'Orange'
+      fill_in 'Measurement unit', with: 'kg'
+      fill_in 'Price', with: '2'
+      fill_in 'Quantity', with: '1'
+      click_button 'Create Food'
+
+      expect(page).to have_current_path(foods_path)
     end
   end
 end

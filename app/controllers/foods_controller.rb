@@ -1,20 +1,17 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: %i[show edit update destroy]
 
-  # GET /foods or /foods.json
+  # GET /foods
   def index
     @foods = Food.where(user: current_user)
   end
-
-  # GET /foods/1 or /foods/1.json
-  def show; end
 
   # GET /foods/new
   def new
     @food = Food.new
   end
 
-  # POST /foods or /foods.json
+  # POST /foods
   def create
     @food = current_user.foods.build(food_params)
 
@@ -25,7 +22,7 @@ class FoodsController < ApplicationController
     end
   end
 
-  # DELETE /foods/1 or /foods/1.json
+  # DELETE /foods/1
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
