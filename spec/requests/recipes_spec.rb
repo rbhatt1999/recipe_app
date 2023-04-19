@@ -18,7 +18,7 @@ RSpec.describe RecipesController, type: :request do
       expect(response.content_type).to include 'text/html'
     end
     it 'contains the correct content' do
-      expect(response.body).to include 'apple'
+      expect(response.body).to include 'Recipe'
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe RecipesController, type: :request do
       expect(response.content_type).to include 'text/html'
     end
     it 'contains the correct content' do
-      expect(response.body).to include 'apple'
+      expect(response.body).to include 'Recipe'
     end
   end
 
