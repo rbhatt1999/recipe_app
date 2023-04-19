@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container-fluid container">
   <% if @recipes.empty? %>
 
-<div class="text-decoration-none mb-5 mx-auto d-flex justify-content-center">
-    <h2 class="text-center me-6">No recipes available</h2>
-    <%= link_to "Add new recipe", new_recipe_path, class: 'btn btn-secondary text text-centet' %>
-</div>
+  <div class="text-decoration-none mb-5 mx-auto d-flex justify-content-center">
+      <h2 class="text-center me-6">No recipes available</h2>
+      <%= link_to "Add new recipe", new_recipe_path, class: 'btn btn-secondary text text-centet' %>
+  </div>
 
   <% else %>
 
