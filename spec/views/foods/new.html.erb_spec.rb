@@ -16,7 +16,7 @@ RSpec.describe 'foods/new', type: :view do
     it 'should display a form with a name field' do
       expect(page).to have_field('Name')
     end
-    
+
     it 'should display a form with a Measurement unit field' do
       expect(page).to have_field('Measurement unit')
     end
@@ -39,9 +39,8 @@ RSpec.describe 'foods/new', type: :view do
       fill_in 'Price', with: '2'
       fill_in 'Quantity', with: '1'
       click_button 'Create Food'
-      
+
       expect(page).to have_current_path(foods_path)
     end
-
   end
 end
