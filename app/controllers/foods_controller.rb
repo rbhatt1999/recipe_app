@@ -3,7 +3,7 @@ class FoodsController < ApplicationController
 
   # GET /foods
   def index
-    @foods = Food.all
+    @foods = Food.where(user: current_user)
   end
 
   # GET /foods/new

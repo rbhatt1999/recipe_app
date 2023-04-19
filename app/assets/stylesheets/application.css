@@ -61,3 +61,24 @@ th {
 .alert {
   text-align: center;
 }
+
+.text-decoration-none {
+  text-decoration: none;
+  color: black;
+}
+
+.shopping_list h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.shopping_header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.shopping_header p {
+  font-size: 18px;
+}
