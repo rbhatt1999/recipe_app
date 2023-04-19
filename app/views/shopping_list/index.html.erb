@@ -1,8 +1,8 @@
-<div>
+<div class="shopping_list">
     <h1>Shopping List</h1>
-    <div>
+    <div class="shopping_header">
       <P>Amount of food items to buy: <%= @ingredients.length %></P>
-      <p>Total value of food needed: $<%=@ingredients.map{|ingredient| ingredient.quantity*ingredient.food.price}.sum%></p>
+      <p>Total value of food needed: $<%= @total_price %></p>
     </div>
     
     <table class="food_table">
