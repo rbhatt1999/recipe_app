@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between text-decoration-none mb-5">
+<div class="d-flex justify-content-between text-decoration-none mb-5 container">
   <div>
     <h3>Name:<%= @recipe.name %> </h3>
     <p>Preparation Time: <%= @recipe.preperation_time%> </p>
@@ -9,23 +9,23 @@
    <% if can? :update, @recipe%>
     <% if @recipe.public %>
       <p>Current Status: Public</p>
-      <%= button_to "Change public to private", recipe_path(@recipe), method: :patch, class: "submit-button"%>
+      <%= button_to "Change public to private", recipe_path(@recipe), method: :patch%>
     <% else %>
       <p>Current Status: Private</p>
-      <%= button_to "Change Private to public", recipe_path(@recipe), method: :patch, class: "submit-button" %>
+      <%= button_to "Change Private to public", recipe_path(@recipe), method: :patch%>
     <% end %>
    <% end %>
   </div>
 </div>
 
-<div class="d-flex justify-content-between text-decoration-none mb-5">
+<div class="d-flex justify-content-between text-decoration-none mb-5 container">
   <% if can? :update, @recipe%>
     <%= link_to "Generate shopping list",shopping_list_path, class: 'btn btn-secondary' %>
     <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe.id), class: 'btn btn-secondary' %>
   <%end%>
 </div>
 
-<table class="table table-striped">
+<table class="table table-striped container">
   <thead>
     <tr>
       <th scope="col">Food</th>
@@ -40,10 +40,10 @@
           <td><%= ingredient.food.name %></td>
           <td><%= ingredient.quantity%> <%= ingredient.food.measurement_unit %></td>
           <td>$ <%= ingredient.food.price %></td>
-          <td class="d-flex gap-2">
+          <td class="d-flex gap-2 justify-content-center">
           <% if can? :update, @recipe%>
-            <%= link_to "Modify", edit_recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id) %>
-            <%= button_to "Remove", recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id), method: :delete %>
+            <%= link_to "Modify", edit_recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id), class: 'modify-btn' %>
+            <%= button_to "Remove", recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id), method: :delete, class: 'delete-btn'%>
           <%else%>
             <p>Actions Not allowed</p>
           <%end%>
