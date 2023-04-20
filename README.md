@@ -104,6 +104,11 @@ In order to run this project you need:
 ```sh
  rspec spec
 ```
+- if it shows error try using this command
+
+```sh
+ bundle exec rspec spec
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
