@@ -82,3 +82,45 @@ th {
 .shopping_header p {
   font-size: 18px;
 }
+
+.delete-btn {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background: #e33232;
+  color: #fff;
+  font-size: 18px;
+}
+
+.modify-btn {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  background: #6c757d;
+  color: #fff;
+  font-size: 18px;
+}
+
+.food_table td,
+.food_table th,
+.table td,
+.table th {
+  text-align: center;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.sign-up,
+.login,
+.new-food,
+.new-recipe {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  gap: 20px;
+}
