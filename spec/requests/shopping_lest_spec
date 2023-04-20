@@ -1,0 +1,40 @@
+require 'rails_helper'
+
+RSpec.describe 'ShoppingLists', type: :request do
+  include Devise::Test::IntegrationHelpers
+  
+  before(:example) do
+    @user1 = User.create(name: 'Kolly', email: 'asd@gmail.com', password: 'password', confirmed_at: Time.now)
+    @recipe1 = Recipe.create(name: 'recipe1', cooking_time: 2, preperation_time: 1,
+                             description: 'recipe1 description', public: true, user_id: @user1.id)
+    @food = Food.create(name: 'orange', price: 3, measurement_unit: 'kg', quantity: 2, user_id: @user1.id,
+                        created_at: Time.now)
+    @recipe_food = RecipeFood.create(food_id: @food.id, recipe_id: @recipe1.id, quantity: 2, created_at: Time.now)
+    
+  end
+
+  describe 'GET /index' do
+    before do
+      sign_in @user1
+      get shopping_list_path
+    end
+    it 'should return response status correct (ok)' do
+      expect(response).to have_http_status(:ok)
+    end
+    it 'response to html' do
+      expect(response.content_type).to include 'text/html'
+    end
+
+    it 'contains the correct content' do
+      expect(response.body).to include 'Shopping List'
+    end
+
+    it 'render contain foods' do
+      expect(response.body).to include(@food.name)
+    end
+
+    it 'render contain foods price' do
+      expect(response.body).to include(@food.price.to_s)
+    end
+  end
+end
