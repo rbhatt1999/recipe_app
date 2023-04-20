@@ -26,10 +26,6 @@
 
 The Recipe app enables you to manage your recipes and ingredients. You can save ingredients, monitor your stock, develop new recipes, and generate a shopping list based on what you have and what you need for a recipe. Additionally, the app emphasizes the importance of sharing recipes and provides an option to make them public for everyone to access
 
-## 🚀 Video demo <a name="video-demo"></a>
-
-- [Check the link](---)
-
 ## 🛠 Built With <a name="built-with"></a>
 
 > <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
@@ -86,7 +82,7 @@ In order to run this project you need:
 ```
 
 - Set up the database
-Change the username and password of your postgres account in `config/database.yml`
+  Change the username and password of your postgres account in `config/database.yml`
 
 ```sh
  rails db:create db:migrate
@@ -107,6 +103,7 @@ Change the username and password of your postgres account in `config/database.ym
 ```sh
  rspec spec
 ```
+
 - if it shows error try using this command
 
 ```sh
