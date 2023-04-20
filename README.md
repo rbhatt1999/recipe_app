@@ -5,7 +5,7 @@
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 blog-app ](#-practice-test-driven-developmenttdd-)
+- [📖 Recipe-app ](#-practice-test-driven-developmenttdd-)
   - [🛠 Built With ](#-built-with-)
   - [🛠 Tech Stack ](#-tech-stack-)
     - [Key Features ](#key-features-)
@@ -22,7 +22,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 blog-app <a name="about-project"></a>
+# 📖 Recipe-app <a name="about-project"></a>
 
 The Recipe app enables you to manage your recipes and ingredients. You can save ingredients, monitor your stock, develop new recipes, and generate a shopping list based on what you have and what you need for a recipe. Additionally, the app emphasizes the importance of sharing recipes and provides an option to make them public for everyone to access
 
@@ -32,9 +32,9 @@ The Recipe app enables you to manage your recipes and ingredients. You can save 
 
 ## 🛠 Built With <a name="built-with"></a>
 
-> <li><a href="">Ruby</a></li>
-> <li><a href="">Ruby on Rails</a></li>
-> <li><a href="">Postgresql</a></li>
+> <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
+> <li><a href="https://rubyonrails.org/">Ruby on Rails</a></li>
+> <li><a href="https://www.postgresql.org/">Postgresql</a></li>
 
 ### Key Features <a name="key-features"></a>
 
@@ -60,6 +60,8 @@ In order to run this project you need:
 
 - Mac or PC
 - Install Ruby
+- Install Rails
+- Install Postgresql
 - Understanding of Ruby
 
 ### Setup
@@ -84,6 +86,7 @@ In order to run this project you need:
 ```
 
 - Set up the database
+Change the username and password of your postgres account in `config/database.yml`
 
 ```sh
  rails db:create db:migrate
