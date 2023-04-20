@@ -1,6 +1,6 @@
 class Food < ApplicationRecord
   belongs_to :user
-  has_many :recipe_food
+  has_many :recipe_food, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :price, numericality: { greater_than_or_equal_to: 0 }
