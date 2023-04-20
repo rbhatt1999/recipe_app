@@ -1,0 +1,21 @@
+<div class="row">
+<h2 class="text-center">Public Recipes</h2>
+<% @recipes.each do |recipe|%>
+<div class="container">
+<div class="shadow-lg m-3 bg-white public-card">
+    <div class="card-body">
+      <%= link_to recipe_path(recipe.id), class: 'text-decoration-none d-flex align-items-center justify-content-center' do %>
+      <div class="d-flex flex-column w-50 text-center">
+        <h5 class="card-title py-3 "><%= recipe.name.capitalize %></h3>
+        <p class="mb-0 py-3">By: <%= recipe.user.name.capitalize %></p>
+      </div>
+          <div class="d-flex w-50 flex-column text-center">
+            <p class="py-3 mb-0">Total food items: <%= @ingredients.where(recipe: recipe).count %></p>
+            <p class="py-3 mb-0">Total Price: $ <%= @ingredients.where(recipe: recipe).map {|value| value.food.price * value.quantity}.sum %></p>
+          </div>
+      <% end %>
+    </div>
+</div>
+</div>
+<% end %>
+</div>

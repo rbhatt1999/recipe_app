@@ -1,0 +1,42 @@
+<nav class="sticky-top navbar-dark bg-dark">
+  <ul class="nav-list d-flex align-items-center justify-content-between mb-0">
+    <li class="navbar-brand">
+      Recipe App
+    </li>
+    <% if user_signed_in?%>
+      <div class="d-flex align-items-center justify-content-between">
+        <li class="navbar-brand">
+          <%= link_to "Foods", foods_path, class: "link-success foods"%>
+        </li>
+        <li class="navbar-brand">
+          <%= link_to "Recipes" , recipes_path, class: "link-success recipes" %>
+        </li>
+        <li class="navbar-brand">
+          <%= link_to "Public Recipies", '/public_recipes', class: "link-success recipes" %>
+        </li>
+
+        <li class="navbar-brand">
+          <%= link_to "Shopping list", '/shopping_list', class: "link-success recipes" %>
+        </li>
+      </div>
+    <%end%>
+    
+    <div class="d-flex align-items-center justify-content-between">
+      <% if user_signed_in? %>
+        <li class="navbar-brand fs-6"> Welcome <span style="">
+            <%= current_user.name.capitalize %>!
+          </span></li>
+        <li class="navbar-brand fs-6">
+          <%= button_to "Log Out" , destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary " %>
+        </li>
+        <% else %>
+          <li class="navbar-brand fs-6">
+            <%= link_to "Sign In" , new_user_session_path, class: "btn btn-outline-secondary " %>
+          </li>
+          <li class="navbar-brand fs-6">
+            <%= link_to "Sign Up" , new_user_registration_path, class: "btn btn-outline-secondary " %>
+          </li>
+          <% end %>
+    </div>
+  </ul>
+</nav>

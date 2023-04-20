@@ -1,0 +1,35 @@
+<div class="container-fluid container">
+  <% if @recipes.empty? %>
+
+  <div class="text-decoration-none mb-5 mx-auto d-flex justify-content-center">
+      <h2 class="text-center me-6">No recipes available</h2>
+      <%= link_to "Add new recipe", new_recipe_path, class: 'btn btn-secondary text text-centet' %>
+  </div>
+
+  <% else %>
+
+    <h3 class="text-center">My Recipes</h3>
+    <div class="text-end mb-3">
+      <%= link_to "Add new recipe", new_recipe_path, class: 'btn btn-secondary' %>
+    </div>
+
+    <% @recipes.each do |recipe| %>
+      <div class="container-fluid mb-4 border border-">
+      <%= link_to recipe_path(recipe.id), class: 'text-decoration-none' do%>
+        <div class="row border border-1 align-items-center">
+            <div class="col-sm-3 p-3">
+              <h4><%= recipe.name %></h4>
+          </div>
+          <div class="col col-sm-9 overflow-hidden">
+            <p class="card-text"><%= recipe.description %></p>
+          </div>
+        </div>
+        <%end%>
+         <div class="mb-2 " >
+                    <%= button_to "Remove", recipe_path(recipe.id), class: 'btn btn-danger mt-2', method: :delete %>
+         </div>
+      </div>
+    <% end %>
+
+  <% end %>
+</div>

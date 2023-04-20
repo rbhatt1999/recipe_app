@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Edit Ingredient</h1>
+  <%= form_with model: @recipe_food, url: recipe_recipe_food_path(recipe_id: @recipe_food.recipe_id, id: @recipe_food.id), method: :patch do |f| %>
+    <%= f.hidden_field :id, value: @recipe_food.id %>
+    <%= f.hidden_field :recipe_id, value: @recipe_food.recipe_id %>
+    <br>
+    <p>Select Ingredient</p>
+    <%= f.select :food_id, @foods.map { |food| [food.name, food.id] }, {}, { class:'form-select'} %>
+
+    <br>
+    <p>Quantity</p>
+    <%= f.number_field :quantity, { class:'form-select'} %>
+    <%= f.submit "Add Ingredient" %>
+  <% end %>
+</div>
