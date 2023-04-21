@@ -1,42 +1,30 @@
-<nav class="sticky-top navbar-dark bg-dark">
-  <ul class="nav-list d-flex align-items-center justify-content-between mb-0">
-    <li class="navbar-brand">
-      Recipe App
-    </li>
-    <% if user_signed_in?%>
-      <div class="d-flex align-items-center justify-content-between">
-        <li class="navbar-brand">
-          <%= link_to "Foods", foods_path, class: "link-success foods"%>
-        </li>
-        <li class="navbar-brand">
-          <%= link_to "Recipes" , recipes_path, class: "link-success recipes" %>
-        </li>
-        <li class="navbar-brand">
-          <%= link_to "Public Recipies", '/public_recipes', class: "link-success recipes" %>
-        </li>
-
-        <li class="navbar-brand">
-          <%= link_to "Shopping list", '/shopping_list', class: "link-success recipes" %>
-        </li>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Recipe App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+      <% if user_signed_in?%>
+         <%= link_to "Foods", foods_path, class: "nav-item nav-link"%>
+         <%= link_to "Recipes" , recipes_path, class: "nav-item nav-link" %>
+         <%= link_to "Public Recipies", '/public_recipes', class: "nav-item nav-link" %>
+         <%= link_to "Shopping list", '/shopping_list', class: "nav-item nav-link" %>
     <%end%>
-    
-    <div class="d-flex align-items-center justify-content-between">
-      <% if user_signed_in? %>
-        <li class="navbar-brand fs-6"> Welcome <span style="">
-            <%= current_user.name.capitalize %>!
-          </span></li>
-        <li class="navbar-brand fs-6">
-          <%= button_to "Log Out" , destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary " %>
-        </li>
-        <% else %>
-          <li class="navbar-brand fs-6">
-            <%= link_to "Sign In" , new_user_session_path, class: "btn btn-outline-secondary " %>
-          </li>
-          <li class="navbar-brand fs-6">
-            <%= link_to "Sign Up" , new_user_registration_path, class: "btn btn-outline-secondary " %>
-          </li>
-          <% end %>
+      </div>
+      <div class="d-flex justify-content-end">
+      <%if user_signed_in?%>
+        <p class="nav-item nav-link">Welcome <%= current_user.name.capitalize %>!</p>
+        <%= button_to "Log Out" , destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary nav-item nav-link" %>
+    <%end%>
+      </div>
+      <div class="d-flex justify-content-center">
+      <%unless user_signed_in?%>
+        <%= link_to "Sign In" , new_user_session_path, class: "btn btn-outline-secondary nav-item nav-link" %>
+        <%= link_to "Sign Up" , new_user_registration_path, class: "btn btn-outline-secondary nav-item nav-link" %>
+      <%end%>
+      </div>
     </div>
-  </ul>
+  </div>
 </nav>
